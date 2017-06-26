@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+
+{% block header %}
+    {% if tipo is defined %} Tipo {{tipo.nome}} {% else %} Novo Tipo {% endif %}
+{% endblock %}
+
+{% block body %}
+    {{form_start(form, {'attr': {'novalidate': 'novalidate'} })}}
+       {% if not form.vars.valid %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ form_errors(form.nome) }}
+                {{ form_errors(form.descricao) }}
+            </div>
+        {% endif %}
+        <div class="row">
+            <div class="form-group col-lg-6">
+                {{form_label(form.nome)}}
+                {{form_widget(form.nome, {'attr': {'class': 'form-control'} })}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-6">
+                {{form_label(form.descricao)}}
+                {{form_widget(form.descricao, {'attr': {'class': 'form-control'} })}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-6">
+                {{form_label(form.fraqueza)}}
+                {{form_widget(form.fraqueza, {'attr': {'class': 'form-control'} })}}
+            </div>
+        </div>
+        <div class="form-group">
+            {{form_widget(form.btnSalvar, {'attr': {'class': 'btn btn-primary'} })}}
+        </div>
+    {{form_end(form)}}
+    <br/>
+    <div>
+        <a href="{{path('listarTipos')}}">Voltar</a>
+    </div>
+{% endblock %}

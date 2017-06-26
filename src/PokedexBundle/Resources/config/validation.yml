@@ -1,0 +1,20 @@
+PokedexBundle\Entity\Regiao:
+    properties:
+        nome:
+            - NotNull: 
+                message: Nome não pode ser vazio
+            - NotBlank: 
+                message: Nome não pode ser vazio
+            - Length:
+                min: 3
+                minMessage: Nome deve possuir ao menos 5 caracteres
+                max: 100
+                maxMessage: Nome não pode ter mais de 100 caracteres
+        clima:
+            - NotNull: 
+                message: Clima não pode ser vazio
+            - NotBlank: 
+                message: Clima não pode ser vazio
+            - Choice:
+                choices:  [Quente, Frio, Temperado]
+                message:  Selecione um valor válido para clima

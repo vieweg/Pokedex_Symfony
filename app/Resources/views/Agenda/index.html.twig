@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}{% endblock %}
+
+{% block body %}
+    <div style="height: 600px; width: 800px; background-image: url('{{asset('bundles/PokedexBundle/pokedex.png')}}')">
+        {% if pokemon %}
+            <img style="margin-left: 35px; margin-top: 160px; height: 320px; width: 320px;" 
+                 src="{{asset("uploads/#{pokemon.imagem}")}}" />
+        {% else %}
+            <img style="margin-left: 35px; margin-top: 160px; height: 320px; width: 320px;" 
+                 src="{{asset('bundles/PokedexBundle/placeholder.png')}}" />
+        {% endif %}
+        <div style="width: 250px; height: 340px; overflow: scroll; position: relative; left: 490px; top: -300px;">
+            {{form_start(form, {'attr': {'id': 'formAgenda'} })}}
+                <div class="row">
+                    <div class="form-group col-lg-6">
+                        {{form_label(form.nome)}}
+                        {{form_widget(form.nome, {'attr': {'class': 'form-control'} })}}
+                    </div>
+                    <div class="form-group col-lg-6">
+                        {{form_label(form.numero)}}
+                        {{form_widget(form.numero, {'attr': {'class': 'form-control'} })}}
+                    </div>
+                </div>
+            {{form_end(form)}}
+            {% if pokemon %}
+                <p style="margin-top: 5px;">
+                    <strong>#{{pokemon.numero}} {{pokemon.nome}}</strong>
+                </p>
+                <p>
+                    <strong>Tipo: </strong>{{pokemon.tipo.nome}}
+                </p>
+                <p>
+                    <strong>Região: </strong>{{pokemon.regiao.nome}}
+                </p>
+                <p>
+                    {{pokemon.descricao}}
+                </p>
+            {% else %}
+                <p>Nenhum pokémon encontrado</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        $('.form-control').keypress(function (e) {
+            if (e.which === 13) {
+                $('#formAgenda').submit();
+            }
+        });
+        
+        $(function() {
+            if ('speechSynthesis' in window) {
+                var text = "{{pokemon ? "#{pokemon.nome}, #{pokemon.descricao}" : ''}}";
+                var msg = new SpeechSynthesisUtterance(text);
+                speechSynthesis.speak(msg);
+            }
+        });
+    </script>
+{% endblock %}

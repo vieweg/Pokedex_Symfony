@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+
+{% block header %}Usuários{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>{{message}}</strong>
+        </div>
+    {% endfor %}
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Login</th>
+                <th>E-mail</th>
+                <th>Tipo</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in usuarios %}
+                <tr>
+                    <td>{{u.id}}</td>
+                    <td>{{u.nome}}</td>
+                    <td>{{u.username}}</td>
+                    <td>{{u.email}}</td>
+                    <td>{{u.role}}</td>
+                    <td>
+                        <a href="{{path('atualizarUsuario', {'id': u.id})}}">Alterar</a>
+                        | <a href="{{path('deletarUsuario', {'id': u.id})}}">Excluir</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">Nenhum usuário cadastrado.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        <a class="btn btn-primary" href="{{path('criarUsuario')}}">Novo</a>
+    </div>
+{% endblock %}
+

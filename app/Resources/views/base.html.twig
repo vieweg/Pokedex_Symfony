@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Pokedex{% endblock %}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" 
+              integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    {% if app.user %}
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    {{app.user.nome}} <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{path('agenda')}}">Agenda</a></li>
+                                    <li><a href="{{path('listarPokemons')}}">Pokémons</a></li>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <li><a href="{{path('listarTipos')}}">Tipos</a></li>
+                                        <li><a href="{{path('listarRegioes')}}">Regiões</a></li>
+                                        <li><a href="{{path('listarUsuarios')}}">Usuários</a></li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                            <li><a href="{{path('logout')}}"><span class="glyphicon glyphicon-log-out"></span></a></li>
+                        </ul>
+                    {% else %}
+                        <form action="{{path('login')}}" method="post" class="navbar-form navbar-right">
+                            <div class="form-group {{error ? 'has-error' : ''}}">
+                                <input type="text" name="_username" value="{{last_username}}" class="form-control" placeholder="Usuário">
+                            </div>
+                            <div class="form-group {{error ? 'has-error' : ''}}">
+                                <input type="password" name="_password" class="form-control" placeholder="Senha">
+                            </div>
+                            <button type="submit" name="login" class="btn btn-primary">Logar</button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <h1>{% block header %}Título da Página{% endblock %}</h1> 
+            {% block body %}Conteúdo da página{% endblock %}
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+        </script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

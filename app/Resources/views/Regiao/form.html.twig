@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+
+{% block header %}
+    {% if regiao is defined %} Região {{regiao.nome}} {% else %} Nova Região {% endif %}
+{% endblock %}
+
+{% block body %}
+    {{form_start(form)}}
+       {% if not form.vars.valid %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ form_errors(form.nome) }}
+                {{ form_errors(form.clima) }}
+            </div>
+        {% endif %}
+        <div class="row">
+            <div class="form-group col-lg-6">
+                {{form_label(form.nome)}}
+                {{form_widget(form.nome, {'attr': {'class': 'form-control'} })}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-6">
+                {{form_label(form.clima)}}
+                {{form_widget(form.clima, {'attr': {'class': 'form-control'} })}}
+            </div>
+        </div>
+        <div class="form-group">
+            {{form_widget(form.btnSalvar, {'attr': {'class': 'btn btn-primary'} })}}
+        </div>
+    {{form_end(form)}}
+    <br/>
+    <div>
+        <a href="{{path('listarRegioes')}}">Voltar</a>
+    </div>
+{% endblock %}

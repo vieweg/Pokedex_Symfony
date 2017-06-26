@@ -1,0 +1,98 @@
+index:
+    path: /
+    methods: [GET]
+    defaults: { _controller: PokedexBundle:Index:index }
+
+agenda:
+    path: /agenda
+    defaults: { _controller: PokedexBundle:Index:agenda }
+
+listarPokemons:
+    path: /pokemons
+    methods: [GET]
+    defaults: { _controller: PokedexBundle:Pokemon:listar }
+   
+getImagemPokemon:
+    path: /pokemons/{id}/imagem
+    defaults: { _controller: PokedexBundle:Pokemon:getImagem }
+    requirements:
+        id: \d+
+    
+criarPokemon:
+    path: /pokemons/new
+    defaults: { _controller: PokedexBundle:Pokemon:criar }
+    
+atualizarPokemon:
+    path: /pokemons/{id}/atualizar
+    defaults: { _controller: PokedexBundle:Pokemon:atualizar }
+    requirements:
+        id: \d+
+    
+deletarPokemon:
+    path: /pokemons/{id}/deletar
+    defaults: { _controller: PokedexBundle:Pokemon:deletar }
+    requirements:
+        id: \d+
+
+listarTipos:
+    path: /tipos
+    methods: [GET]
+    defaults: { _controller: PokedexBundle:Tipo:listar }
+
+criarTipo:
+    path: /tipos/new
+    defaults: { _controller: PokedexBundle:Tipo:criar }
+    
+atualizarTipo:
+    path: /tipos/{id}/atualizar
+    defaults: { _controller: PokedexBundle:Tipo:atualizar }
+    requirements:
+        id: \d+
+    
+deletarTipo:
+    path: /tipos/{id}/deletar
+    defaults: { _controller: PokedexBundle:Tipo:deletar }
+    requirements:
+        id: \d+
+
+listarRegioes:
+    path: /regioes
+    methods: [GET]
+    defaults: { _controller: PokedexBundle:Regiao:listar }
+    
+criarRegiao:
+    path: /regioes/new
+    defaults: { _controller: PokedexBundle:Regiao:criar }
+    
+atualizarRegiao:
+    path: /regioes/{id}/atualizar
+    defaults: { _controller: PokedexBundle:Regiao:atualizar }
+    requirements:
+        id: \d+
+    
+deletarRegiao:
+    path: /regioes/{id}/deletar
+    defaults: { _controller: PokedexBundle:Regiao:deletar }
+    requirements:
+        id: \d+
+        
+listarUsuarios:
+    path: /usuarios
+    methods: [GET]
+    defaults: { _controller: PokedexBundle:Usuario:listar }
+    
+criarUsuario:
+    path: /usuarios/new
+    defaults: { _controller: PokedexBundle:Usuario:criar }
+    
+atualizarUsuario:
+    path: /usuarios/{id}/atualizar
+    defaults: { _controller: PokedexBundle:Usuario:atualizar }
+    requirements:
+        id: \d+
+    
+deletarUsuario:
+    path: /usuarios/{id}/deletar
+    defaults: { _controller: PokedexBundle:Usuario:deletar }
+    requirements:
+        id: \d+

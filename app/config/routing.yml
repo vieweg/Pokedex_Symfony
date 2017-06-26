@@ -1,0 +1,10 @@
+pokedex:
+    resource: "@PokedexBundle/Resources/config/routing.yml"
+    
+login:
+    path: /login
+    
+logout:
+    path: /logout
+    
+    

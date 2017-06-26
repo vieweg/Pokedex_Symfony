@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+
+{% block header %}Tipos de Pokémon{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>{{message}}</strong>
+        </div>
+    {% endfor %}
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Fraqueza</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for t in tipos %}
+                <tr>
+                    <td>{{t.id}}</td>
+                    <td>{{t.nome}}</td>
+                    <td>{{t.descricao}}</td>
+                    <td>{{t.fraqueza ? t.fraqueza.nome : 'Não possui'}}</td>
+                    <td>
+                        <a href="{{path('atualizarTipo', {'id': t.id})}}">Alterar</a>
+                        | <a href="#">Excluir</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Nenhuma tipo cadastrado.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        <a class="btn btn-primary" href="{{path('criarTipo')}}">Novo</a>
+    </div>
+{% endblock %}
+
