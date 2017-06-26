@@ -11,7 +11,7 @@
             <img style="margin-left: 35px; margin-top: 160px; height: 320px; width: 320px;" 
                  src="{{asset('bundles/PokedexBundle/placeholder.png')}}" />
         {% endif %}
-        <div style="width: 250px; height: 340px; overflow: scroll; position: relative; left: 490px; top: -300px;">
+        <div style="width: 265px; height: 340px; overflow-x: hidden; overflow-y: auto; position: relative; left: 490px; top: -300px;">
             {{form_start(form, {'attr': {'id': 'formAgenda'} })}}
                 <div class="row">
                     <div class="form-group col-lg-6">
@@ -54,7 +54,7 @@
         
         $(function() {
             if ('speechSynthesis' in window) {
-                var text = "{{pokemon ? "#{pokemon.nome}, #{pokemon.descricao}" : ''}}";
+                var text = "{{pokemon ? "#{pokemon.nome}, Tipo: #{pokemon.tipo.nome}, Região: #{pokemon.regiao.nome}  #{pokemon.descricao}" : ''}}";
                 var msg = new SpeechSynthesisUtterance(text);
                 speechSynthesis.speak(msg);
             }
