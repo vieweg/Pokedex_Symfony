@@ -14,10 +14,10 @@ class Usuario implements UserInterface, \Serializable {
     const ROLE_ADMIN = 'ROLE_ADMIN';
     const ROLE_USER = 'ROLE_USER';
     
-    const ROLES = [
+   /*const ROLES = [
         'Administrador' => self::ROLE_ADMIN,
         'Usuário' => self::ROLE_USER
-    ];
+    ];*/
     
     /**
     * @ORM\Id

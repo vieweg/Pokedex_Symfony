@@ -18,13 +18,17 @@ use Symfony\Component\Form\FormBuilderInterface;
 class UsuarioType extends AbstractType {
     
     function buildForm(FormBuilderInterface $builder, array $options) {
+        $roles = [
+                'Administrador' => Usuario::ROLE_ADMIN,
+                'Usuário' => Usuario::ROLE_USER
+        ];
         $builder->add('nome', null, ['label' => 'Nome'])
                 ->add('username', null, ['label' => 'Login'])
                 ->add('password', PasswordType::class, ['label' => 'Senha'])
                 ->add('email', EmailType::class, ['label' => 'E-mail'])
                 ->add('role', ChoiceType::class, [
                     'label' => 'Tipo',
-                    'choices' => Usuario::ROLES,
+                    'choices' => $roles,
                     'placeholder' => 'Selecione um tipo...'
                 ])
                 ->add('btnSalvar', SubmitType::class, ['label' => 'Salvar']);

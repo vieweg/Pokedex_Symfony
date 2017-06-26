@@ -14,3 +14,5 @@
 !var/sessions/.gitkeep
 !var/SymfonyRequirements.php
 !/var/bootstrap.php.cache
+!/web/uploads
+/web/uploads/*
