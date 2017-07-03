@@ -16,3 +16,4 @@
 !/var/bootstrap.php.cache
 !/web/uploads
 /web/uploads/*
+/nbproject/*
